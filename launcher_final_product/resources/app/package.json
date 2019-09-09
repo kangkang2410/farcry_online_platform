@@ -1,0 +1,19 @@
+{
+    "name": "farcry-online-launcher",
+    "version": "0.1.0",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-packager . FarCryOnlineLauncher"
+    },
+    "devDependencies": {
+        "electron": "^6.0.5"
+    },
+    "dependencies": {
+        "electron-packager": "^14.0.5",
+        "electron-reload": "^1.5.0",
+        "find-process": "^1.4.2",
+        "jquery": "^3.4.1",
+        "klaw-sync": "^6.0.0"
+    }
+}

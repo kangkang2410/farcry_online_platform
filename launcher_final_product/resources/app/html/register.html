@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Far Cry Online Platform</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel='stylesheet' href='./css/text_style.css' />
+    <link rel='stylesheet' href='./css/button_style.css' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="bs/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./bs/js/jquery-3.4.1.min.js"></script>
+    <script src="./bs/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="main-part register-screen d-flex flex-column justify-content-center align-items-center">
+        <div class="the-border">
+            <div class="inner-cutout">
+                <h1 class="ml-auto mr-auto knockout">Far Cry Online Launcher</h1>
+            </div>
+        </div>
+        <!-- Register Form -->
+        <div>
+            <form class="d-flex flex-column w-100">
+                <h2 style="text-align: center; margin: 0;" class="definition-text">Registration</h2>
+                <div style="text-align: center;" class="one-line-text-placeholder">
+                    <span id="API_display"></span>
+                </div>
+
+                <!-- Username input -->
+
+                <div class="input-group">
+                    <div class="input-group-prepend input-label input-group-text">
+                        <span class="w-100" id="basic-addon1"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input onchange="check_username(); call_check_data_API(); manage_register_submit(this);"
+                        maxlength="256" type="text" id="register_username" class="form-control w-75 user-input" required
+                        placeholder="Enter your username">
+
+                </div>
+                <div class="one-line-text-placeholder">
+                    <span id="register_username_error_display" class="error"></span>
+                </div>
+
+                <!-- Email input -->
+
+                <div class="input-group">
+                    <div class="input-group-prepend input-label input-group-text">
+                        <span class="ml-auto mr-auto w-100" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input onchange="check_email(); call_check_data_API(); manage_register_submit(this);"
+                        maxlength="256" type="email" id="register_email" class="form-control w-75 user-input" required
+                        placeholder="Enter your email">
+                </div>
+                <div class="one-line-text-placeholder">
+                    <span id="register_email_error_display" class="error"></span>
+                </div>
+
+                <!-- Password input -->
+
+                <div class="input-group">
+                    <div class="input-group-prepend input-label input-group-text">
+                        <span class="ml-auto mr-auto w-100" id="basic-addon1"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input onchange="check_password(); manage_register_submit(this);" type="password"
+                        id="register_password" class="form-control user-input" required
+                        placeholder="Enter your password" maxlength="35" minlength="8">
+
+                    <!-- Show password button -->
+
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-show-password"><i class="fas fa-eye-slash"
+                                id="icon_register_password"></i></button>
+                    </div>
+                </div>
+                <div class="one-line-text-placeholder">
+                    <span id="register_password_error_display" class="error"></span>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend input-label input-group-text">
+                        <span class="ml-auto mr-auto w-100" id="basic-addon1"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <input onchange="check_same_password(); manage_register_submit(this);" type="password"
+                        id="register_re_password" class="form-control user-input" required
+                        placeholder="Re-enter your password" maxlength="35" minlength="8">
+
+                    <!-- Show password button -->
+
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-show-password"><i class="fas fa-eye-slash"
+                                id="icon_register_re_password"></i></button>
+                    </div>
+                </div>
+                <div class="one-line-text-placeholder">
+                    <span id="register_re_password_error_display" class="error"></span>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button id="register_button" class="btn btn-dark w-100 mr-auto ml-auto" onclick="submit_register_form_API()"
+                disabled>
+                REGISTER
+            </button>
+        </div>
+        <div class="one-line-text-placeholder">
+        </div>
+        <div class="one-line-text-placeholder align-self-center">
+            <span style=" color: white; font-size: 16px;">You already have an account?&nbsp;</span>
+            <a href="login.html ">
+                <button style=" font-weight: bold; border-radius: 15px;" class="button blue">Login now!
+                </button>
+            </a>
+        </div>
+    </div>
+    <script>
+        window.$ = window.jQuery = require('jquery');
+    </script>
+    <script src=" ./js/features.js "></script>
+    <script src=" ./js/checkValid.js "></script>
+    <script src=" ./js/register.js "></script>
+</body>
+<script src=" bs/js/jquery-3.4.1.min.js "></script>
+<script src=" bs/js/bootstrap.min.js "></script>
+
+</html>

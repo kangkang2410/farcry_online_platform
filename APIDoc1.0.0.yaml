@@ -1,0 +1,338 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is an API document for our Project Farcry Online. Team members: Vu Le,
+    Luan Nguyen, Khang Tran, Khang VU.
+  version: 1.0.0
+  title: Farcry Online - APIS document
+host: farcryserver.herokuapp.com
+basePath: /farcryAPI/v1
+tags:
+  - name: Player
+    description: Store all player's informations
+  - name: Match
+    description: Store Match's log
+schemes:
+  - http
+paths:
+  /players/login:
+    post:
+      tags:
+        - Player
+      summary: Login a player
+      description: >-
+        Check player username/password. Check verification status of player. If
+        well matched, player will be given a token. His preferences will be also
+        returned.
+      operationId: login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Player info that will be verified
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        '200':
+          description: >-
+            {'token': value, 'player_name': value, 'player_character_model':
+            value, 'player_character_color': value, 'player_key_bindings': value
+            }
+        '406':
+          description: "{'error':Some params are missing! Please verify your request., 'token':'1-time-token'}"
+        '404':
+          description: Username or password is not corrected!
+        '400':
+          description: Some params are missing! Please verify your request.
+
+  /players/register:
+    post:
+      tags:
+        - Player
+      summary: Register a new player. By adding their info to database.
+      description: >-
+        Check player's info, only accept info that is not previously used by
+        other player. If valid and 'Register button' is pressed, store player's
+        info to database and send an email for verification.
+      operationId: register
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Player info that will be stored.
+          required: true
+          schema:
+            $ref: '#/definitions/Register'
+      responses:
+        '202':
+          description: "{'sucess': 'Account created succesfully! Please verify your email before login', 'token': login_token}"
+        '406':
+          description: Email or username is already taken! Please try another. (Must not happen when using our Launcher client)
+        '400':
+          description: Some params are missing! Please verify your request.
+
+  /players/logout:
+    get:
+      tags:
+        - Player
+      summary: Logout a player
+      description: >-
+        Check player token and player name. If well matched, player will be
+        logout, and his token will be deleted.
+      operationId: logout
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          description: Store token of player
+          name: Authorization
+          type: string
+          required: true
+        - name: player_name
+          in: path
+          description: Player name
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Log out succesfully!
+        '404':
+          description: Invalid Credentials
+        '400':
+          description: Some params are missing! Please verify your request.
+
+  /players/check_availability:
+    get:
+      tags:
+        - Player
+      summary: Check player's username and email availability
+      description: >-
+        Check player's info, only accept info that is not previously used by
+        other player.
+      operationId: check_availability
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: player_email
+          in: path
+          description: Player email
+          required: true
+          type: string
+        - name: player_name
+          in: path
+          description: Player name
+          required: true
+          type: string
+      responses:
+        '200':
+          description: This account valid for new registration
+        '406':
+          description: Email/ username is already taken! Please try another.
+        '400':
+          description: Some params are missing! Please verify your request.
+
+  /players/check_email:
+    get:
+      tags:
+        - Player
+      summary: Check email availability
+      description: >-
+        Check player's email, only accept email that is not previously used by
+        other player.
+      operationId: check_email
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: player_email
+          in: path
+          description: Player email
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Valid for new registration
+        '406':
+          description: Email is already taken! Please try another.
+        '400':
+            description: player_email is missing! Please verify your request.
+
+  /players/check_player_name:
+    get:
+      tags:
+        - Player
+      summary: Check player_name availability
+      description: >-
+        Check playername, only accept playername that is not previously used by
+        other player.
+      operationId: check_player_name
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: player_name
+          in: path
+          description: Player name
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Valid for new registration
+        '406':
+          description: Player name is already taken! Please try another.
+        '400':
+            description: player_email is missing! Please verify your request.
+
+  /players/verify:
+    get:
+      tags:
+        - Player
+      summary: Verify a player through mail
+      description: ' Get token and player_name from parameters field. If those info match the data on the API server, the player will be verified. The 1-use-only token will be immediately deleted after verification.'
+      operationId: verify
+      consumes:
+        - application/json
+      produces:
+        - redirect
+      parameters:
+        - name: token
+          in: path
+          description: An 1-use-only token that is given to player
+          required: true
+          type: string
+        - name: player_name
+          in: path
+          description: Player name
+          required: true
+          type: string
+      responses:
+        '302':
+          description: Redirect to '/redirect/success' or '/redirect/failure'
+
+  /players/update:
+    put:
+      tags:
+        - Player
+      summary: Update player preference
+      description: ' Update player preference, following new config and player''s preference data'
+      operationId: update
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          description: Store token of player
+          name: Authorization
+          type: string
+          required: true
+        - name: player_name
+          in: path
+          description: Player name
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Player info that will be used to overwrite the existing one
+          required: true
+          schema:
+            $ref: '#/definitions/Update'
+      responses:
+        '200':
+          description: New preferences saved!
+        '400':
+          description: Some params are missing! Please verify your request.
+        '406':
+          description: No permission! Please log in!
+
+  /matches/submit:
+    post:
+      tags:
+        - Match
+      summary: Submit match data to the database server
+      description: ' Submit match data to the database server'
+      operationId: submit
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          description: Store token of player
+          name: Authorization
+          type: string
+          required: true
+        - name: player_name
+          in: path
+          description: Player name
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: "Info of a match that will be stored in database"
+          required: true
+          schema:
+            $ref: '#/definitions/Submit'
+      responses:
+        '200':
+          description: Match log has been saved succesfully!
+        '400':
+          description: Some params are missing! Please verify your request
+        '401':
+          description: No permission! Please log in!
+        '406':
+          description: Match log was aready stored!
+
+definitions:
+  Register:
+    type: object
+    properties:
+      player_name:
+        type: string
+        format: int64
+      player_email:
+        type: string
+      player_password:
+        type: string
+    xml:
+      name: Player
+  Login:
+    type: object
+    properties:
+      player_name/ player_email:
+        type: string
+      player_password:
+        type: string
+  Update:
+    type: object
+    properties:
+      player_character_model:
+        type: string
+      player_character_color:
+        type: string
+      player_key_bindings:
+        type: string
+  Submit:
+    type: object
+    properties:
+      match_name:
+        type: string
+      match_start_time:
+        type: string
+      match_end_time:
+        type: string
+      match_frags:
+        type: string

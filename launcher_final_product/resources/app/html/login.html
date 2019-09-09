@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Far Cry Online Platform</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel='stylesheet' href='./css/text_style.css' />
+    <link rel='stylesheet' href='./css/button_style.css' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="bs/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./bs/js/jquery-3.4.1.min.js"></script>
+    <script src="./bs/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="main-part login-screen d-flex flex-column justify-content-center align-items-center">
+        <div class="the-border">
+            <div class="inner-cutout">
+                <h1 class="ml-auto mr-auto knockout">Far Cry Online Launcher</h1>
+            </div>
+        </div>
+
+        <!-- Login Form -->
+        <div>
+            <form class="d-flex flex-column w-100">
+                <h2 style="text-align: center; margin: 0;" class="definition-text">Login</h2>
+                <div style="text-align: center;" class="one-line-text-placeholder">
+                    <span class="error error-message" id="login-error-message"></span>
+                </div>
+
+                <!-- Username input -->
+
+                <div class="inp input-group" id="float_username">
+                    <div class="input-group-prepend input-label input-group-text">
+                        <span class="ml-auto mr-auto w-100" id="basic-addon1"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" onchange="checkUsernameAndPassword()" id="login_username"
+                        class="form-control w-75 user-input" placeholder="Enter your username" />
+                </div>
+                <div class="one-line-text-placeholder">
+                    <span class="error error-message" id="login-username-error-message"></span>
+                </div>
+
+                <!-- Password input -->
+
+                <div class="inp input-group" id="float_password">
+                    <div class="input-group-prepend input-label input-group-text">
+                        <span class="ml-auto mr-auto w-100" id="basic-addon1"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input onchange="checkUsernameAndPassword()" type="password" id="login_password"
+                        class="form-control user-input" placeholder="Enter your password" />
+
+                    <!-- Show password button -->
+
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-show-password">
+                            <i class="fas fa-eye-slash" id="icon_login_password"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="one-line-text-placeholder">
+                    <span class="error error-message" id="login-password-error-message"></span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Login button -->
+        <div class="d-flex justify-content-center">
+            <button id="login_button" class="btn btn-dark w-100" disabled="false" onclick="loginUser()">
+                LOGIN
+            </button>
+        </div>
+        <div class="one-line-text-placeholder">
+        </div>
+
+        <!-- Redirect user to register page -->
+        <div class="one-line-text-placeholder align-self-center">
+            <span style="color: white; font-size: 16px;">You don't have an account?&nbsp;</span>
+            <a href="register.html"><button style="font-weight: bold; border-radius: 15px;" class="button red">Register
+                    now!</button></a>
+        </div>
+        <!-- START Module-->
+        <div class="one-line-text-placeholder">
+        </div>
+        <div class="d-flex w-100 justify-content-center">
+            <button id="upload"> Select </button>
+            <input class="w-75" id="filePath" type="text" name="filePath" value="Select path to the execution file!"
+                disabled="true">
+        </div>
+        <!-- END Module-->
+    </div>
+    <script>
+        window.$ = window.jQuery = require('jquery');
+    </script>
+    <script src="./js/features.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+
+</html>

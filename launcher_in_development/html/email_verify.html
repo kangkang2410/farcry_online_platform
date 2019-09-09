@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Far Cry Online Platform</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel='stylesheet' href='./css/text_style.css' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="bs/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+</head>
+
+<body>
+    <div class="main-part email-verify-screen d-flex flex-column justify-content-center align-items-center">
+        <div class="the-border">
+            <div class="inner-cutout">
+                <h1 class="ml-auto mr-auto knockout">Far Cry Online Launcher</h1>
+            </div>
+        </div>
+        <span class="ml-auto mr-auto error-message text-center" id="display-message"
+            style="font-size: 16px; margin-top: 12px;">
+            Please check your inbox to verify your email!
+        </span>
+        <button class="btn btn-dark w-100 mr-auto ml-auto" style="margin-top: 24px;"
+            onclick="returnToLoginPage()">RETURN</button>
+    </div>
+    <script src="bs/js/bootstrap.min.js"></script>
+    <script>
+        window.$ = window.jQuery = require('jquery');
+    </script>
+    <script src="./js/email_verify.js"></script>
+</body>
+
+</html>

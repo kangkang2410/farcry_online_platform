@@ -1,0 +1,93 @@
+body {
+    background: url('../image/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+audio {
+    margin-bottom: 2%;
+}
+
+.input-label {
+    width: 15%;
+}
+
+.main-part {
+    width: 60%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: rgb(165, 165, 165);
+    border-radius: 30px;
+}
+
+.one-line-text-placeholder {
+    height: 30px;
+}
+
+.btn {
+    box-shadow: none !important;
+}
+
+input {
+    box-shadow: none !important;
+}
+
+.error {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 85%;
+    border-radius: 10px;
+    color: black;
+}
+
+.definition-text {
+    color: white;
+}
+
+@keyframes chainReaction {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#welcome {
+    animation: chainReaction 4s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    padding: 10px;
+    border: 15px solid black;
+    background-color: white;
+    border-radius: 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    font-weight: bold;
+}
+
+#welcome:nth-child(1) {
+    animation-delay: .3s;
+}
+
+#welcome>h1 {
+    text-align: center;
+    color: rgb(20, 81, 161);
+    font-size: 70px;
+    font-weight: bold;
+}
+
+#login-error-message {
+    color: blue;
+}
